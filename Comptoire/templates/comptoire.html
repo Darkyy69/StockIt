@@ -8,7 +8,29 @@
 
 </head>
 <body>
-    <input>
-    
+    <form id="articleForm" method="GET" action="{% url 'print_article' article_id=0 %}">
+        {% comment %} {% csrf_token %} {% endcomment %}
+        <label for="articleId">Article ID:</label>
+        <input type="text" id="articleId" name="article_id">
+        <button type="submit">Print Article</button>
+    </form>
+      
+    <script>
+        document.getElementById('articleForm').addEventListener('submit', function(event) {
+            var articleIdInput = document.getElementById('articleId');
+            var articleId = articleIdInput.value.trim();
+
+            // Prevent form submission if article ID is empty
+            if (!articleId) {
+                event.preventDefault();
+                return;
+            }
+
+            // Update form action with the entered article ID
+            var formAction = "{% url 'print_article' 0 %}".replace("0", articleId);
+            document.getElementById('articleForm').action = formAction;
+        });
+    </script>
+      
 </body>
 </html>

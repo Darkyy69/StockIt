@@ -1,8 +1,8 @@
 from django.urls import path, include
-from .views import comptoire_view, import_articles_from_txt
+from .views import comptoire_view, print_article
 
 urlpatterns = [
     # path('api/', ), 
     path('', comptoire_view, name='comptoire'),
-    path('abc/', import_articles_from_txt, name='ssss'),
+    path('article/<int:article_id>/', print_article, name='print_article'),
 ]

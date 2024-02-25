@@ -5,8 +5,8 @@ name = "pypi"
 
 [packages]
 django = "*"
-pypdf2 = "*"
 python-barcode = "*"
+svglib = "*"
 
 [dev-packages]
 

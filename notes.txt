@@ -1,0 +1,2 @@
+-barcode input field event on focus must be in ALL CAPS , when scanning the barcode.
+-

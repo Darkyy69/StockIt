@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from .models import *
+from .models.models_Entite_marchandise import *
+from .models.models_documents import *
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponse
 

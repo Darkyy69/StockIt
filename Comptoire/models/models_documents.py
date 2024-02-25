@@ -22,27 +22,27 @@ class Documents(models.Model):  # COMM0N
 
 class BonCMD(Documents):
     def __str__(self):
-        return self.id
+        return str(self.id)
 class Facture(Documents):
     def __str__(self):
-        return self.id
+        return str(self.id)
 class FactureAvoir(Documents):
     def __str__(self):
-        return self.id
+        return str(self.id)
 class BonArtIn(Documents):
     def __str__(self):
-        return self.id
+        return str(self.id)
 class BonArtOut(Documents):
     def __str__(self):
-        return self.id
+        return str(self.id)
 class FactureProfor(Documents):
     def __str__(self):
-        return self.id
+        return str(self.id)
 class BonLivraison(Documents):
     def __str__(self):
-        return self.id  
+        return str(self.id)  
 class BonReception(Documents):
     def __str__(self):
-        return self.id                          
+        return str(self.id)                          
 
 

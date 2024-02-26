@@ -1,14 +1,7 @@
 from rest_framework.viewsets import ModelViewSet
-from ..models.models_documents import *
-from ..models.models_Entite_marchandise import *
-from ..models.models_Entite_personnes import *
-from ..models.models_ligneDocument import *
-from ..models.models_info_extra import *
-from ..models.models_payement import *
-from ..models.models_remise import *
-from ..models.models_stock import *
+from ...models.models_documents import *
+from ..serializers import BonCMDSerializer, FactureSerializer, FactureAvoirSerializer, BonArtInSerializer, BonArtOutSerializer, FactureProforSerializer, BonLivraisonSerializer, BonReceptionSerializer
 
-from .serializers import BonCMDSerializer, FactureSerializer, FactureAvoirSerializer, BonArtInSerializer, BonArtOutSerializer, FactureProforSerializer, BonLivraisonSerializer, BonReceptionSerializer
 
 class BonCMDViewSet(ModelViewSet):
     queryset = BonCMD.objects.all()

@@ -2,8 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 from .models_Entite_personnes import *
 from .models_info_extra import *
-from django.apps import apps
-
 # Create your models here. tous ce qui conserne les document type bons et facturations
 
 
@@ -17,35 +15,14 @@ class Documents(models.Model):  # COMM0N
     imprime = models.ForeignKey(LiseEtatSortie, on_delete=models.SET_NULL, null=True) 
     editeur = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
 
-
-
-
     class Meta: 
-        abstract = True
-
-    def verifierDocument(self):
-        modelName = "Ligne" + self.__class__.__name__
-        
-        # Get the model class dynamically
-        model_class = apps.get_model('Comptoire', modelName)        
-        ligneDocuments = model_class.objects.filter(id_doc=self.id)
-        total = 0.0
-
-        for ligneDoc in ligneDocuments:
-            total += float(ligneDoc.montant) 
-
-        if total == self.montant:
-            return True
-        
-        # Traitement si le montant != total
-        #
-        #
-        return False        
+        abstract = True        
 
 
 class BonCMD(Documents):
     def __str__(self):
         return str(self.id)
+    
 class Facture(Documents):
     def __str__(self):
         return str(self.id)

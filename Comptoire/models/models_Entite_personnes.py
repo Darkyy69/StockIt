@@ -4,6 +4,7 @@ from django.utils.translation import gettext_lazy as _
 from django.core.validators import MinValueValidator
 from .models_info_extra import TypeClient,EtatsClient
 import re
+from .models_ligneDocument import LigneFacture
 
 
 class Propreot(models.Model):  # COMM0N 

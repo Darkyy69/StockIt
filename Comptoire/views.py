@@ -13,6 +13,10 @@ from svglib.svglib import svg2rlg  # svglib for parsing SVG to reportlab graphic
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 
+
+from django.apps import apps
+from Comptoire.models.models_ligneDocument import *
+
 # Create your views here.
 
 def comptoire_view(request):
@@ -60,12 +64,50 @@ def trait_enregistrer(request, modeFen, doc):
                 case '003': # BonTranzition   
                     pass                              
 
+def getClientFactures(self):
+    Factures_propreot = self.__class__.objects.filter(propretaire = self.propretaire)      
+    print(Factures_propreot)
+    T_mont = 0.0
+    T_ligne_mont = 0.0
+    for fact_propreot in  Factures_propreot:
+        T_mont += fact_propreot.montant
+        ligneFactures = LigneFacture.objects.filter(id_doc = fact_propreot.id)
+        for ligne_fact in ligneFactures:
+            T_ligne_mont += ligne_fact.montant
+
+    total = {T_mont,T_ligne_mont}
+    return total
+
+def verifierDocument(self):
+    modelName = "Ligne" + self.__class__.__name__
+    
+    # Get the model class dynamically
+    model_class = apps.get_model('Comptoire', modelName)        
+    ligneDocuments = model_class.objects.filter(id_doc=self.id)
+    total = 0.0
+
+    for ligneDoc in ligneDocuments:
+        total += float(ligneDoc.montant) 
+
+    if total == self.montant:
+        return True
+    
+    # Traitement si le montant != total
+    #
+    #
+    return False
+
+
+
+
 
 from Comptoire.models.models_documents import *
 def test_method(request):
     cmd2 = BonCMD.objects.get(pk="2")
+    fact1 = Facture.objects.get(pk="1")
     print(cmd2)
     print(cmd2.verifierDocument())
+    print(fact1.getClientFactures())
 
     return render(request,'test_method.html', {"montant_egal" : cmd2.verifierDocument()})
 

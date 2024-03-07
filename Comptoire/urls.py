@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import comptoire_view, print_article
+from .views import comptoire_view, print_article, trait_enregistrer
 
 urlpatterns = [
     path('', comptoire_view, name='comptoire'),

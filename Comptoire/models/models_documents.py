@@ -43,6 +43,18 @@ class BonLivraison(Documents):
         return str(self.id)  
 class BonReception(Documents):
     def __str__(self):
-        return str(self.id)                          
+        return str(self.id)       
+
+class BonTransfer(Documents):
+    def __str__(self):
+        return str(self.id)  
+
+class BonRecuperation(Documents):
+    def __str__(self):
+        return str(self.id)  
+
+class BonTranzition(Documents):
+    def __str__(self):
+        return str(self.id)                                 
 
 

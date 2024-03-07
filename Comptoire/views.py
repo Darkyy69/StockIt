@@ -3,6 +3,7 @@ from .models.models_Entite_marchandise import *
 from .models.models_documents import *
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponse
+import json
 
 from io import BytesIO
 from barcode import EAN13  # Choose appropriate barcode type
@@ -18,6 +19,50 @@ def comptoire_view(request):
     Articles = Article.objects.all()
 
     return render(request,'comptoire.html', {'Articles':Articles})
+
+
+def trait_enregistrer(request, modeFen, doc):
+    
+    data = json.loads(request.body)
+    
+    match modeFen:
+        case '001': # Vente
+            match doc:
+                case '001': # FactureProformat
+                    pass
+                case '002': # Facture
+                    pass
+                case '003': # FactureAvoir
+                    pass  
+                case '004': # BonArtOut
+                    pass
+                case '005': # BonLivraison
+                    pass    
+
+
+
+        case '002': # Achat
+            match doc:
+                case '001': # BonCMD
+                    pass
+                case '002': # BonArtIn
+                    pass
+                case '003': # BonArtOut   
+                    pass         
+
+
+        case '003': # Transfert
+            match doc:
+                case '001': # BonTransfert
+                    pass
+                case '002': # BonRecuperation
+                    pass
+                case '003': # BonTranzition   
+                    pass                              
+
+
+
+
 
 
 def print_article(request, article_id):

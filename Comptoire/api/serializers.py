@@ -12,5 +12,4 @@ for modelclass in all_models:
             fields = '__all__'  # or specify the fields you want to include
 
     # Register the serializer dynamically with a name based on the class
-    globals()[f"{modelclass.__name__}Serializer"] = ModelClassSerializer  
-    print(f"{modelclass.__name__}Serializer")      
+    globals()[f"{modelclass.__name__}Serializer"] = ModelClassSerializer    

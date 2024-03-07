@@ -51,7 +51,7 @@ def trait_enregistrer(request, modeFen, doc):
                     pass         
 
 
-        case '003': # Transfert
+        case '003': # Etablissement
             match doc:
                 case '001': # BonTransfert
                     pass
@@ -61,7 +61,13 @@ def trait_enregistrer(request, modeFen, doc):
                     pass                              
 
 
+from Comptoire.models.models_documents import *
+def test_method(request):
+    cmd2 = BonCMD.objects.get(pk="2")
+    print(cmd2)
+    print(cmd2.verifierDocument())
 
+    return render(request,'test_method.html', {"montant_egal" : cmd2.verifierDocument()})
 
 
 
